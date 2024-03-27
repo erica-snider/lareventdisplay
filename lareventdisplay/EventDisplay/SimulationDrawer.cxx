@@ -251,9 +251,9 @@ namespace evd {
 
           auto gptStart = geo::Point_t(p.Vx(), p.Vy(), p.Vz());
           geo::Point_t sceOffset{0, 0, 0};
-          if (sce->EnableCorrSCE()) sceOffset = sce->GetPosOffsets(gptStart);
+          if (sce->EnableCorrSCE()) sceOffset = sce->GetPosOffsets(gptStart, planeID);
           geo::Point_t const xyz1{
-            p.Vx() - sceOffset.X(), p.Vy() + sceOffset.Y(), p.Vz() + sceOffset.Z()};
+            p.Vx() + sceOffset.X(), p.Vy() + sceOffset.Y(), p.Vz() + sceOffset.Z()};
           geo::Point_t const xyz2{xyz1.X() + r * p.Px() / p.P(),
                                   xyz1.Y() + r * p.Py() / p.P(),
                                   xyz1.Z() + r * p.Pz() / p.P()};
@@ -295,9 +295,9 @@ namespace evd {
         if (TMeV < 30) continue;
         auto gptStart = geo::Point_t(p->Vx(), p->Vy(), p->Vz());
         geo::Point_t sceOffset{0, 0, 0};
-        if (sce->EnableCorrSCE()) sceOffset = sce->GetPosOffsets(gptStart);
+        if (sce->EnableCorrSCE()) sceOffset = sce->GetPosOffsets(gptStart, planeID);
         geo::Point_t const xyz1{
-          p->Vx() - sceOffset.X(), p->Vy() + sceOffset.Y(), p->Vz() + sceOffset.Z()};
+          p->Vx() + sceOffset.X(), p->Vy() + sceOffset.Y(), p->Vz() + sceOffset.Z()};
         geo::Point_t const xyz2{xyz1.X() + r * p->Px() / p->P(),
                                 xyz1.Y() + r * p->Py() / p->P(),
                                 xyz1.Z() + r * p->Pz() / p->P()};
